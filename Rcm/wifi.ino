@@ -13,7 +13,7 @@ void setupWifi() {
     WiFi.disconnect(true);
     WiFi.softAPConfig(IPAddress(10, 25, 21, 1), IPAddress(10, 25, 21, 1), IPAddress(255, 255, 255, 0));
     Serial.println("########## switching to wifi hotspot mode");
-    Serial.print("             network name: "); Serial.print(APName); Serial.print("  password: "); Serial.print(APPass);
+    Serial.print("             network name: "); Serial.print(APName); Serial.print("  password: "); Serial.println(APPass);
     WiFi.softAP(APName, APPass, 1, 0, 1);
     delay(1000);
   }
