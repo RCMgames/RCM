@@ -77,19 +77,19 @@ void wifiEvent(WiFiEvent_t event) {
 }
 
 
-boolean readBoolFromBuffer() {  // return boolean at pos position in recvdData
+boolean recvBl() {  // return boolean at pos position in recvdData
   byte msg = recvdData[wifiArrayCounter];
   wifiArrayCounter++;  // increment the counter for the next value
   return (msg == 1);
 }
 
-byte readByteFromBuffer() {  // return byte at pos position in recvdData
+byte recvBy() {  // return byte at pos position in recvdData
   byte msg = recvdData[wifiArrayCounter];
   wifiArrayCounter++;  // increment the counter for the next value
   return msg;
 }
 
-int readIntFromBuffer() {  // return int from four bytes starting at pos position in recvdData
+int recvIn() {  // return int from four bytes starting at pos position in recvdData
   union {  // this lets us translate between two variable types (equal size, but one's four bytes in an array, and one's a four byte int)  Reference for unions: https:// www.mcgurrin.info/robots/127/
     byte b[4];
     int v;
@@ -103,7 +103,7 @@ int readIntFromBuffer() {  // return int from four bytes starting at pos positio
   return d.v;  // return the int form of union d
 }
 
-float readFloatFromBuffer(byte &wifiArrayCounter) {  // return float from 4 bytes starting at pos position in recvdData
+float recvFl() {  // return float from 4 bytes starting at pos position in recvdData
   union {  // this lets us translate between two variable types (equal size, but one's 4 bytes in an array, and one's a 4 byte float) Reference for unions: https:// www.mcgurrin.info/robots/127/
     byte b[4];
     float v;
@@ -117,17 +117,23 @@ float readFloatFromBuffer(byte &wifiArrayCounter) {  // return float from 4 byte
   return d.v;
 }
 
-void addBoolToBuffer(boolean msg) {  // add a boolean to the tosendData array
+PVector recvVect() {
+  float fl1 = recvFl();
+  float fl2 = recvFl();
+  return {fl1, fl2};
+}
+
+void sendBl(boolean msg) {  // add a boolean to the tosendData array
   dataToSend[wifiArrayCounter] = msg;
   wifiArrayCounter++;
 }
 
-void addByteToBuffer(byte msg) {  // add a byte to the tosendData array
+void sendBy(byte msg) {  // add a byte to the tosendData array
   dataToSend[wifiArrayCounter] = msg;
   wifiArrayCounter++;
 }
 
-void addIntToBuffer(int msg) {  // add an int to the tosendData array (four bytes)
+void sendIn(int msg) {  // add an int to the tosendData array (four bytes)
   union {
     byte b[4];
     int v;
@@ -141,7 +147,7 @@ void addIntToBuffer(int msg) {  // add an int to the tosendData array (four byte
   }
 }
 
-void addFloatToBuffer(float msg) {  // add a float to the tosendData array (four bytes)
+void sendFl(float msg) {  // add a float to the tosendData array (four bytes)
   union {  // this lets us translate between two variables (equal size, but one's 4 bytes in an array, and one's a 4 byte float Reference for unions: https:// www.mcgurrin.info/robots/127/
     byte b[4];
     float v;
@@ -153,4 +159,8 @@ void addFloatToBuffer(float msg) {  // add a float to the tosendData array (four
     dataToSend[wifiArrayCounter] = d.b[i];
     wifiArrayCounter++;
   }
+}
+void sendVect(PVector v) {
+  sendFl(v.x);
+  sendFl(v.y);
 }
