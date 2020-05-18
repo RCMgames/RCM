@@ -10,6 +10,7 @@ const int SIGNAL_LOSS_TIMEOUT = 1000; //disable if no signal after this many mil
 
 
 void Enabled() { //code to run while enabled
+
 }
 
 void Enable() { //turn on outputs
