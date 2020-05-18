@@ -1,7 +1,7 @@
 #include "rcmutil.h"
 #include "wifi.h"
-const char *routerName = "chicken";
-const char *routerPass = "bawkbawk";
+const char *routerName = "networkName";
+const char *routerPass = "networkPass";
 const char *APPass = "RCMpassword";
 int port = 25210;
 const boolean connectToNetwork = true; //true=try to connect to router  false=go straight to hotspot mode

@@ -3,18 +3,22 @@ void setupWifi() {
   WiFi.disconnect(true);
   sprintf(APName, "RCM%05d", port);  // create SSID
   delay(1000);
+  WiFi.onEvent(wifiEvent);
   if (connectToNetwork) {
-    WiFi.onEvent(wifiEvent);
+    WiFi.mode(WIFI_STA);
     WiFi.begin(routerName, routerPass);
   }
   delay(3000);
   if (!wifiConnected) {
-    Serial.println("########## connection to router failed");
+    Serial.println("########## connection to router failed/skipped");
     WiFi.disconnect(true);
-    WiFi.softAPConfig(IPAddress(10, 25, 21, 1), IPAddress(10, 25, 21, 1), IPAddress(255, 255, 255, 0));
+    WiFi.mode(WIFI_AP);
     Serial.println("########## switching to wifi hotspot mode");
     Serial.print("             network name: "); Serial.print(APName); Serial.print("  password: "); Serial.println(APPass);
+    delay(1000);
     WiFi.softAP(APName, APPass, 1, 0, 1);
+    delay(1000);
+    WiFi.softAPConfig(IPAddress(10, 25, 21, 1), IPAddress(10, 25, 21, 1), IPAddress(255, 255, 255, 0));
     delay(1000);
   }
   if (!wifiConnected) {
