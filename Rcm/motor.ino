@@ -7,6 +7,7 @@ void enableMot(int ch, int en, int i1, int i2) {
   ledcWrite(ch, 0);
 }
 void disableMot(int ch, int en, int i1, int i2) {
+  ledcDetachPin(en);
   digitalWrite(i1, LOW);
   digitalWrite(i2, LOW);
   digitalWrite(en, LOW);
