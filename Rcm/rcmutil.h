@@ -7,6 +7,9 @@ const int BAT_PIN = 36;
 const int PWM_FREQ = 12000;
 const int PWM_RES = 8;
 const int PWM_RANGE = 255;
+const float SERVO_TICKS_PER_MICROSECOND = 52.4288;
+const int SERVO_FREQ=50;
+const int SERVO_RES=20;
 //          PWM_CH, PIN
 #define port1 4,27
 #define port2 5,26

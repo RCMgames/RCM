@@ -1,4 +1,3 @@
-
 void enableMot(int ch, int en, int i1, int i2) {
   ledcSetup(ch, PWM_FREQ, PWM_RES);
   ledcAttachPin(en, ch);
