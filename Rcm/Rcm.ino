@@ -7,24 +7,18 @@ int port = 25210;
 const boolean connectToNetwork = true; //true=try to connect to router  false=go straight to hotspot mode
 const int SIGNAL_LOSS_TIMEOUT = 1000; //disable if no signal after this many milliseconds
 //////////////////////////// add variables here
-PVector driveVect = {0.0, 0.0};
-float servoVal = 0.0;
+
 
 void Enabled() { //code to run while enabled
-  tankMot(portB, portD, driveVect);
-  setSer(port1, servoVal);
+
 }
 
 void Enable() { //turn on outputs
-  enableMot(portB);
-  enableMot(portD);
-  enableSer(port1);
+
 }
 
 void Disable() { //shut off all outputs
-  disableMot(portB);
-  disableMot(portD);
-  disableSer(port1);
+
 }
 
 void PowerOn() {
@@ -36,8 +30,7 @@ void WifiDataToParse() {
   wifiArrayCounter = 0;
   enabled = recvBl();
   //add data to read here:
-  driveVect = recvVect();
-  servoVal = recvFl();
+
 }
 int WifiDataToSend() {
   wifiArrayCounter = 0;
