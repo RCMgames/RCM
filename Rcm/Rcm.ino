@@ -21,7 +21,7 @@ void Disable() { //shut off all outputs
 
 }
 
-void PowerOn() {
+void PowerOn() { //runs once on robot startup
 
 }
 
@@ -40,7 +40,7 @@ int WifiDataToSend() {
   return wifiArrayCounter;
 }
 
-
+////////////////////////////////////////////////
 void setup() {
   Serial.begin(115200);
   Serial.println();
