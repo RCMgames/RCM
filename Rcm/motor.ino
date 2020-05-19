@@ -29,18 +29,18 @@ void setMot(int ch, int en, int i1, int i2, int val) {
   }
 }
 void setMot(int ch, int en, int i1, int i2, float val) {
-  setMot(ch, en, i1, i2, int(val * 255));
+  setMot(ch, en, i1, i2, int(val * PWM_RANGE));
 }
 void tankMot(int chl, int enl, int i1l, int i2l, int chr, int enr, int i1r, int i2r, int turn, int speed) {
   setMot(chl, enl, i1l, i2l, turn + speed);
   setMot(chr, enr, i1r, i2r, -turn + speed);
 }
 void tankMot(int chl, int enl, int i1l, int i2l, int chr, int enr, int i1r, int i2r, float turn, float speed) {
-  setMot(chl, enl, i1l, i2l, int(turn * 255) + int(speed * 255));
-  setMot(chr, enr, i1r, i2r, -int(turn * 255) + int(speed * 255));
+  setMot(chl, enl, i1l, i2l, int(turn * PWM_RANGE + speed * PWM_RANGE));
+  setMot(chr, enr, i1r, i2r, -int(turn * PWM_RANGE + speed * PWM_RANGE));
 }
 
 void tankMot(int chl, int enl, int i1l, int i2l, int chr, int enr, int i1r, int i2r, PVector vect) {
-  setMot(chl, enl, i1l, i2l, int(vect.x * 255) + int(vect.y * 255));
-  setMot(chr, enr, i1r, i2r, -int(vect.x * 255) + int(vect.y * 255));
+  setMot(chl, enl, i1l, i2l, int(vect.x * PWM_RANGE + vect.y * PWM_RANGE));
+  setMot(chr, enr, i1r, i2r, -int(vect.x * PWM_RANGE + vect.y * PWM_RANGE));
 }
