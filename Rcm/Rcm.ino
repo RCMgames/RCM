@@ -8,7 +8,6 @@ const boolean connectToNetwork = true; //true=try to connect to router  false=go
 const int SIGNAL_LOSS_TIMEOUT = 1000; //disable if no signal after this many milliseconds
 //////////////////////////// add variables here
 
-
 void Enabled() { //code to run while enabled
 
 }
@@ -42,12 +41,13 @@ int WifiDataToSend() {
 
 ////////////////////////////////////////////////
 void setup() {
+  Disable();
+  pinMode(ONBOARD_LED, OUTPUT);
+  pinMode(BAT_PIN, INPUT);
   Serial.begin(115200);
   Serial.println();
   Serial.println("##########esp32 powered on.");
   setupWifi();
-  pinMode(ONBOARD_LED, OUTPUT);
-  pinMode(BAT_PIN, INPUT);
   PowerOn();
 }
 
