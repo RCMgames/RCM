@@ -1,8 +1,10 @@
 void enableSer(int ch, int pin) {
+  pinMode(pin, OUTPUT);
   ledcSetup(ch, SERVO_FREQ, SERVO_RES);
   ledcAttachPin(pin, ch);
 }
 void disableSer(int ch, int pin) {
+  pinMode(pin, OUTPUT);
   ledcDetachPin(pin);
 }
 void setSer(int ch, int pin, float val) {

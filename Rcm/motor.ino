@@ -1,12 +1,18 @@
 void enableMot(int ch, int en, int i1, int i2) {
   ledcSetup(ch, PWM_FREQ, PWM_RES);
   ledcAttachPin(en, ch);
+  pinMode(i1, OUTPUT);
+  pinMode(i2, OUTPUT);
+  pinMode(en, OUTPUT);
   digitalWrite(i1, HIGH);
   digitalWrite(i2, HIGH);
   ledcWrite(ch, 0);
 }
 void disableMot(int ch, int en, int i1, int i2) {
   ledcDetachPin(en);
+  pinMode(i1, OUTPUT);
+  pinMode(i2, OUTPUT);
+  pinMode(en, OUTPUT);
   digitalWrite(i1, LOW);
   digitalWrite(i2, LOW);
   digitalWrite(en, LOW);
@@ -37,10 +43,10 @@ void tankMot(int chl, int enl, int i1l, int i2l, int chr, int enr, int i1r, int 
 }
 void tankMot(int chl, int enl, int i1l, int i2l, int chr, int enr, int i1r, int i2r, float turn, float speed) {
   setMot(chl, enl, i1l, i2l, int(turn * PWM_RANGE + speed * PWM_RANGE));
-  setMot(chr, enr, i1r, i2r, -int(turn * PWM_RANGE + speed * PWM_RANGE));
+  setMot(chr, enr, i1r, i2r, int(-turn * PWM_RANGE + speed * PWM_RANGE));
 }
 
 void tankMot(int chl, int enl, int i1l, int i2l, int chr, int enr, int i1r, int i2r, PVector vect) {
   setMot(chl, enl, i1l, i2l, int(vect.x * PWM_RANGE + vect.y * PWM_RANGE));
-  setMot(chr, enr, i1r, i2r, -int(vect.x * PWM_RANGE + vect.y * PWM_RANGE));
+  setMot(chr, enr, i1r, i2r, int(-vect.x * PWM_RANGE + vect.y * PWM_RANGE));
 }
