@@ -11,16 +11,16 @@ const float SERVO_TICKS_PER_MICROSECOND = 52.4288;
 const int SERVO_FREQ = 50;
 const int SERVO_RES = 20;
 //          PWM_CH, PIN
-#define port1 4,27
-#define port2 5,26
+#define port1 8,32
+#define port2 7,33
 #define port3 6,25
-#define port4 7,33
-#define port5 8,32
+#define port4 5,26
+#define port5 4,27
 //           PWM_CH, EN_PIN, PIN1, PIN2
-#define portA 2,17,16,12
-#define portB 0,13,4,14
-#define portC 3,23,22,19
-#define portD 1,5,18,21
+#define portA 3,23,22,19
+#define portB 1,5,18,21
+#define portC 2,17,16,12
+#define portD 0,13,4,14
 
 struct PVector {
   float x;
