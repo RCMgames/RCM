@@ -17,11 +17,10 @@ const int SERVO_RES = 20;
 #define port4 7,33
 #define port5 8,32
 //           PWM_CH, EN_PIN, PIN1, PIN2
-#define portA 0,13,4,14
-#define portB 1,5,18,21
-#define portC 2,17,16,12
-#define portD 3,23,22,19
-
+#define portA 2,17,16,12
+#define portB 0,13,4,14
+#define portC 3,23,22,19
+#define portD 1,5,18,21
 
 struct PVector {
   float x;
