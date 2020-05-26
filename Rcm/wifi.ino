@@ -63,7 +63,7 @@ void wifiEvent(WiFiEvent_t event) {
     case SYSTEM_EVENT_AP_START:
       if (!wifiConnected) {
         Serial.println("########## wifi hotspot started");
-        udp.begin(port);
+        udp.begin(25210);
       }
       wifiConnected = true;
       break;
