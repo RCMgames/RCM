@@ -14,27 +14,27 @@ float a = 0.0;
 float b = 0.0;
 
 void Enabled() { //code to run while enabled
-  quadKiwiMot(port1, port2, port3, port4, x, y, z);
-  setSer(portA, a, 1500, 1000);
-  setSer(portB, b, 1500, 1000);
+  quadKiwiMot(portB, portA, portC, portD, x, y, z);
+  setSer(port1, a, 1500, 1000);
+  setSer(port2, b, 1500, 1000);
 }
 
 void Enable() { //turn on outputs
-  enableMot(port1);
-  enableMot(port2);
-  enableMot(port3);
-  enableMot(port4);
-  enableSer(portA);
-  enableSer(portB);
+  enableMot(portB);
+  enableMot(portA);
+  enableMot(portC);
+  enableMot(portD);
+  enableSer(port1);
+  enableSer(port2);
 }
 
 void Disable() { //shut off all outputs
-  disableMot(port1);
-  disableMot(port2);
-  disableMot(port3);
-  disableMot(port4);
-  disableSer(portA);
-  disableSer(portB);
+  disableMot(portB);
+  disableMot(portA);
+  disableMot(portC);
+  disableMot(portD);
+  disableSer(port1);
+  disableSer(port2);
 }
 
 void PowerOn() { //runs once on robot startup
