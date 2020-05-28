@@ -7,17 +7,34 @@ int port = 25210;
 const boolean connectToNetwork = true; //true=try to connect to router  false=go straight to hotspot mode
 const int SIGNAL_LOSS_TIMEOUT = 1000; //disable if no signal after this many milliseconds
 //////////////////////////// add variables here
+float x = 0.0;
+float y = 0.0;
+float z = 0.0;
+float a = 0.0;
+float b = 0.0;
 
 void Enabled() { //code to run while enabled
-
+  quadKiwiMot(port1, port2, port3, port4, x, y, z);
+  setSer(portA, a, 1500, 1000);
+  setSer(portB, b, 1500, 1000);
 }
 
 void Enable() { //turn on outputs
-
+  enableMot(port1);
+  enableMot(port2);
+  enableMot(port3);
+  enableMot(port4);
+  enableSer(portA);
+  enableSer(portB);
 }
 
 void Disable() { //shut off all outputs
-
+  disableMot(port1);
+  disableMot(port2);
+  disableMot(port3);
+  disableMot(port4);
+  disableSer(portA);
+  disableSer(portB);
 }
 
 void PowerOn() { //runs once on robot startup
@@ -29,6 +46,9 @@ void PowerOn() { //runs once on robot startup
 void WifiDataToParse() {
   wifiArrayCounter = 0;
   enabled = recvBl();
+  x = recvFl();
+  y = recvFl();
+  z = recvFl();
   //add data to read here:
 
 }
