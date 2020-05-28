@@ -1,15 +1,17 @@
 boolean enabled = false;
 boolean wasEnabled = false;
 float batVolt = 0.0;
+float batVoltAvg=0.0;
 const int ONBOARD_LED = 2;
 const float DAC_UnitsPerVolt = 413;
 const int BAT_PIN = 36;
-const int PWM_FREQ = 25000;
-const int PWM_RES = 8;
-const int PWM_RANGE = 255;
+const int PWM_FREQ = 2000;
+const int PWM_RES = 10;
+const int PWM_RANGE = 1023;
 const float SERVO_TICKS_PER_MICROSECOND = 52.4288;
 const int SERVO_FREQ = 50;
 const int SERVO_RES = 20;
+float motorMinMovePower=0;
 //          PWM_CH, PIN
 #define port1 8,32
 #define port2 7,33

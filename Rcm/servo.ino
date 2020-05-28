@@ -4,8 +4,9 @@ void enableSer(int ch, int pin) {
   ledcAttachPin(pin, ch);
 }
 void disableSer(int ch, int pin) {
-  pinMode(pin, OUTPUT);
   ledcDetachPin(pin);
+  pinMode(pin, OUTPUT);
+  digitalWrite(pin,LOW);
 }
 void setSer(int ch, int pin, float val) {
   val = constrain(val, -1, 1);

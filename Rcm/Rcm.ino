@@ -21,6 +21,7 @@ void Disable() { //shut off all outputs
 }
 
 void PowerOn() { //runs once on robot startup
+  setMotorCalibration(2.2);
 
 }
 
@@ -33,7 +34,7 @@ void WifiDataToParse() {
 }
 int WifiDataToSend() {
   wifiArrayCounter = 0;
-  sendFl(batVolt);
+  sendFl(batVoltAvg);
   //add data to send here:
 
   return wifiArrayCounter;
@@ -48,11 +49,13 @@ void setup() {
   Serial.println();
   Serial.println("##########esp32 powered on.");
   setupWifi();
+  batVoltAvg = analogRead(BAT_PIN) / DAC_UnitsPerVolt;
   PowerOn();
 }
 
 void loop() {
   batVolt = analogRead(BAT_PIN) / DAC_UnitsPerVolt;
+  batVoltAvg = batVolt * .001 + batVoltAvg * (.999);
   wasEnabled = enabled;
   wifiComms();
   if (millis() - lastMessageTimeMillis > SIGNAL_LOSS_TIMEOUT) {

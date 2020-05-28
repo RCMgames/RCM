@@ -22,11 +22,13 @@ void setMot(int ch, int en, int i1, int i2, int val) {
   if (val > 0) {
     digitalWrite(i1, HIGH);
     digitalWrite(i2, LOW);
+    val = calibrateMotorValue(val);
     ledcWrite(ch, val);
   }  else if (val < 0) {
     digitalWrite(i1, LOW);
     digitalWrite(i2, HIGH);
-    ledcWrite(ch, -val);
+    val = calibrateMotorValue(-val);
+    ledcWrite(ch, val);
   }
   else {
     digitalWrite(i1, HIGH);
@@ -34,6 +36,7 @@ void setMot(int ch, int en, int i1, int i2, int val) {
     digitalWrite(en, LOW);
   }
 }
+
 void setMot(int ch, int en, int i1, int i2, float val) {
   setMot(ch, en, i1, i2, int(val * PWM_RANGE));
 }
@@ -45,8 +48,14 @@ void tankMot(int chl, int enl, int i1l, int i2l, int chr, int enr, int i1r, int 
   setMot(chl, enl, i1l, i2l, int(turn * PWM_RANGE + speed * PWM_RANGE));
   setMot(chr, enr, i1r, i2r, int(-turn * PWM_RANGE + speed * PWM_RANGE));
 }
-
 void tankMot(int chl, int enl, int i1l, int i2l, int chr, int enr, int i1r, int i2r, PVector vect) {
   setMot(chl, enl, i1l, i2l, int(vect.x * PWM_RANGE + vect.y * PWM_RANGE));
   setMot(chr, enr, i1r, i2r, int(-vect.x * PWM_RANGE + vect.y * PWM_RANGE));
+}
+
+void setMotorCalibration(float val) {
+  motorMinMovePower = PWM_RANGE * val;
+}
+int calibrateMotorValue(int val) {
+  return map(val, 0, PWM_RANGE, motorMinMovePower / batVoltAvg, PWM_RANGE);
 }
