@@ -49,6 +49,8 @@ void WifiDataToParse() {
   x = recvFl();
   y = recvFl();
   z = recvFl();
+  a = recvFl();
+  b = recvFl();
   //add data to read here:
 
 }
