@@ -52,7 +52,7 @@ void tankMot(int chl, int enl, int i1l, int i2l, int chr, int enr, int i1r, int 
   setMot(chl, enl, i1l, i2l, int(vect.x * PWM_RANGE + vect.y * PWM_RANGE));
   setMot(chr, enr, i1r, i2r, int(-vect.x * PWM_RANGE + vect.y * PWM_RANGE));
 }
-void quadkiwi(int ch1, int en1, int a1, int b1, int ch1, int en1, int a1, int b1, int ch1, int en1, int a1, int b1, int ch1, int en1, int a1, int b1, float _x, float _y, float _z) {
+void quadkiwiMot(int ch1, int en1, int a1, int b1, int ch1, int en1, int a1, int b1, int ch1, int en1, int a1, int b1, int ch1, int en1, int a1, int b1, float _x, float _y, float _z) {
   float x = x / (_x + _y + _z);
   float y = y / (_x + _y + _z);
   float z = z / (_x + _y + _z);
