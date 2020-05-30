@@ -53,14 +53,17 @@ void tankMot(int chl, int enl, int i1l, int i2l, int chr, int enr, int i1r, int 
   setMot(chr, enr, i1r, i2r, int(-vect.x * PWM_RANGE + vect.y * PWM_RANGE));
 }
 void quadkiwiMot(int ch1, int en1, int a1, int b1, int ch2, int en2, int a2, int b2, int ch3, int en3, int a3, int b3, int ch4, int en4, int a4, int b4, float _x, float _y, float _z) {
+  float z = 0.0;
+  float y = 0.0;
+  float x = 0.0;
   if (_x + _y + _z == 0) {
-    float x = 0;
-    float y = 0;
-    float z = 0;
+    x = 0;
+    y = 0;
+    z = 0;
   } else {
-    float x = x / (_x + _y + _z);
-    float y = y / (_x + _y + _z);
-    float z = z / (_x + _y + _z);
+    x = x / (_x + _y + _z);
+    y = y / (_x + _y + _z);
+    z = z / (_x + _y + _z);
   }
   setMot(ch1, en1, a1, b1, z - y + x);
   setMot(ch2, en2, a2, b2, z + y + x);
