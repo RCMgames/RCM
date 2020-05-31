@@ -56,14 +56,14 @@ void quadkiwiMot(int ch1, int en1, int a1, int b1, int ch2, int en2, int a2, int
   float z = 0.0;
   float y = 0.0;
   float x = 0.0;
-  if (_x + _y + _z == 0) {
+  if (abs(_x) + abs(_y) + abs(_z) == 0) {
     x = 0;
     y = 0;
     z = 0;
   } else {
-    x = x / (_x + _y + _z);
-    y = y / (_x + _y + _z);
-    z = z / (_x + _y + _z);
+    x = _x / (1 + abs(_y) + abs(_z));
+    y = _y / (abs(_x) + 1 + abs(_z));
+    z = _z / (abs(_x) + abs(_y) + 1);
   }
   setMot(ch1, en1, a1, b1, z - y + x);
   setMot(ch2, en2, a2, b2, z + y + x);
