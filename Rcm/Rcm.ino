@@ -21,7 +21,6 @@ void Disable() { //shut off all outputs
 }
 
 void PowerOn() { //runs once on robot startup
-  setMotorCalibration(2.2);
 
 }
 

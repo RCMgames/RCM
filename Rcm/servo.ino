@@ -6,7 +6,7 @@ void enableSer(int ch, int pin) {
 void disableSer(int ch, int pin) {
   ledcDetachPin(pin);
   pinMode(pin, OUTPUT);
-  digitalWrite(pin,LOW);
+  digitalWrite(pin, LOW);
 }
 void setSer(int ch, int pin, float val) {
   val = constrain(val, -1, 1);

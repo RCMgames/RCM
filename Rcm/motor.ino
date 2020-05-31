@@ -19,12 +19,12 @@ void disableMot(int ch, int en, int i1, int i2) {
 }
 void setMot(int ch, int en, int i1, int i2, int val) {
   val = constrain(val, -PWM_RANGE, PWM_RANGE);
-  if (val > 0) {
+  if (val > motorDeadzone * PWM_RANGE) {
     digitalWrite(i1, HIGH);
     digitalWrite(i2, LOW);
     val = calibrateMotorValue(val);
     ledcWrite(ch, val);
-  }  else if (val < 0) {
+  }  else if (val < motorDeadzone * -PWM_RANGE) {
     digitalWrite(i1, LOW);
     digitalWrite(i2, HIGH);
     val = calibrateMotorValue(-val);
@@ -71,8 +71,9 @@ void quadkiwiMot(int ch1, int en1, int a1, int b1, int ch2, int en2, int a2, int
   setMot(ch4, en4, a4, b4, z - y - x);
 }
 
-void setMotorCalibration(float val) {
+void setMotorCalibration(float val, float deadzone) {
   motorMinMovePower = PWM_RANGE * val;
+  motorDeadzone = deadzone;
 }
 int calibrateMotorValue(int val) {
   return map(val, 0, PWM_RANGE, motorMinMovePower / batVoltAvg, PWM_RANGE);
