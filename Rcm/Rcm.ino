@@ -46,13 +46,12 @@ void PowerOn() { //runs once on robot startup
 void WifiDataToParse() {
   wifiArrayCounter = 0;
   enabled = recvBl();
+  //add data to read here:
   z = recvFl();
   y = recvFl();
   x = recvFl();
   a = recvFl();
   b = recvFl();
-  //add data to read here:
-
 }
 int WifiDataToSend() {
   wifiArrayCounter = 0;
