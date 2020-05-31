@@ -8,3 +8,7 @@ The master branch has all helper functions, but is a blank foundation and won't 
 ## branch: Robot-A
 
 This code controls two drive motors and a servo
+
+## branch: Robot-B
+
+This controls a four wheel kiwi drive and two servos
