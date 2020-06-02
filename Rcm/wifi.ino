@@ -12,6 +12,9 @@ void setupWifi() {
   if (!wifiConnected) {
     Serial.println("########## connection to router failed/skipped");
     WiFi.disconnect(true);
+    if (wifiRestartNotHotspot) {
+      ESP.restart();
+    }
     WiFi.mode(WIFI_AP);
     Serial.println("########## switching to wifi hotspot mode");
     Serial.print("             network name: "); Serial.print(APName); Serial.print("  password: "); Serial.println(APPass);

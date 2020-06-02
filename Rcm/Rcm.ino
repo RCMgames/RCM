@@ -5,6 +5,7 @@ const char *routerPass = "networkPass";
 const char *APPass = "RCMpassword";
 int port = 25210;
 const boolean connectToNetwork = true; //true=try to connect to router  false=go straight to hotspot mode
+const boolean wifiRestartNotHotspot = false; //when connection issue, true=retry connection to router  false=fall back to hotspot
 const int SIGNAL_LOSS_TIMEOUT = 1000; //disable if no signal after this many milliseconds
 //////////////////////////// add variables here
 PVector driveVect = {0.0, 0.0};
