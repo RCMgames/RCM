@@ -40,8 +40,8 @@ void WifiDataToParse() {
   //add data to read here:
   driveVect = recvVect();
   recvFl();//throw away strafing
+  recvFl();//throw away first servo value
   servoVal = recvFl();
-  recvFl();//throw away second servo value
 }
 int WifiDataToSend() {
   wifiArrayCounter = 0;
