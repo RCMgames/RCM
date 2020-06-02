@@ -17,7 +17,7 @@ float b = 0.0;
 void Enabled() { //code to run while enabled
   quadkiwiMot(portB, portA, portC, portD, x, y, z);
   setSer(port1, a, 1500, 1400);
-  setSer(port2, b, 1500, 1400);
+  setSer(port2, -b, 1500, 1400);
 }
 
 void Enable() { //turn on outputs
@@ -48,9 +48,9 @@ void WifiDataToParse() {
   wifiArrayCounter = 0;
   enabled = recvBl();
   //add data to read here:
-  x = recvFl();
-  y = recvFl();
   z = recvFl();
+  y = recvFl();
+  x = recvFl();
   a = recvFl();
   b = recvFl();
 }
