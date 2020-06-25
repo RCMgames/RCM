@@ -1,28 +1,34 @@
 #include "rcmutil.h"
 #include "wifi.h"
-const char *routerName = "networkName";
-const char *routerPass = "networkPass";
+const char *routerName = "chicken";
+const char *routerPass = "bawkbawk";
 const char *APPass = "RCMpassword";
-int port = 25210;
+int port = 25213;
 const boolean connectToNetwork = true; //true=try to connect to router  false=go straight to hotspot mode
 const boolean wifiRestartNotHotspot = false; //when connection issue, true=retry connection to router  false=fall back to hotspot
 const int SIGNAL_LOSS_TIMEOUT = 1000; //disable if no signal after this many milliseconds
 //////////////////////////// add variables here
-
+float x = 0;
+float y = 0;
+float z = 0;
 void Enabled() { //code to run while enabled
-
+  kiwiMot(portA, portB, portC, x, y, z);
 }
 
 void Enable() { //turn on outputs
-
+  enableMot(portB);
+  enableMot(portA);
+  enableMot(portC);
 }
 
 void Disable() { //shut off all outputs
-
+  disableMot(portA);
+  disableMot(portB);
+  disableMot(portC);
 }
 
 void PowerOn() { //runs once on robot startup
-
+  setMotorCalibration(2.3, .05);
 }
 
 //you can communicate booleans, bytes, ints, floats, and vectors
