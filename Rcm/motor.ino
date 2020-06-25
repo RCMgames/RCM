@@ -52,7 +52,7 @@ void tankMot(int chl, int enl, int i1l, int i2l, int chr, int enr, int i1r, int 
   setMot(chl, enl, i1l, i2l, int(vect.x * PWM_RANGE + vect.y * PWM_RANGE));
   setMot(chr, enr, i1r, i2r, int(-vect.x * PWM_RANGE + vect.y * PWM_RANGE));
 }
-void quadkiwiMot(int ch1, int en1, int a1, int b1, int ch2, int en2, int a2, int b2, int ch3, int en3, int a3, int b3, int ch4, int en4, int a4, int b4, float _x, float _y, float _z) {
+void mechanumMot(int ch1, int en1, int a1, int b1, int ch2, int en2, int a2, int b2, int ch3, int en3, int a3, int b3, int ch4, int en4, int a4, int b4, float _x, float _y, float _z) {
   float z = 0.0;
   float y = 0.0;
   float x = 0.0;
@@ -70,11 +70,27 @@ void quadkiwiMot(int ch1, int en1, int a1, int b1, int ch2, int en2, int a2, int
   setMot(ch3, en3, a3, b3, z + y - x);
   setMot(ch4, en4, a4, b4, z - y - x);
 }
-
-void setMotorCalibration(float val, float deadzone) {
-  motorMinMovePower = PWM_RANGE * val;
+void kiwiMot(int ch1, int en1, int a1, int b1, int ch2, int en2, int a2, int b2, int ch3, int en3, int a3, int b3, float _x, float _y, float _z) {
+  float z = 0.0;
+  float y = 0.0;
+  float x = 0.0;
+  if (abs(_x) + abs(_y) + abs(_z) == 0) {
+    x = 0;
+    y = 0;
+    z = 0;
+  } else {
+    x = _x;
+    y = _y;
+    z = _z;
+  }
+  setMot(ch1, en1, a1, b1, (float)(z + x));//back
+  setMot(ch2, en2, a2, b2, (float)(z + y * 0.866 + x / 2)); //front left
+  setMot(ch3, en3, a3, b3, (float)(z - y * 0.866 + x / 2)); //front right
+}
+void setMotorCalibration(float motorMinMoveVoltage, float deadzone) {
+  motorMinMovePWMVal = PWM_RANGE * motorMinMoveVoltage;
   motorDeadzone = deadzone;
 }
 int calibrateMotorValue(int val) {
-  return map(val, 0, PWM_RANGE, motorMinMovePower / batVoltAvg, PWM_RANGE);
+  return constrain(map(val, 0, PWM_RANGE, motorMinMovePWMVal / batVoltAvg, PWM_RANGE), motorMinMovePWMVal / batVoltAvg, PWM_RANGE);
 }

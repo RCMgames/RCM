@@ -11,7 +11,7 @@ const int PWM_RANGE = 1023;
 const float SERVO_TICKS_PER_MICROSECOND = 52.4288;
 const int SERVO_FREQ = 50;
 const int SERVO_RES = 20;
-float motorMinMovePower = 0;
+float motorMinMovePWMVal = 0;
 float motorDeadzone = 0;
 //          PWM_CH, PIN
 #define port1 8,32

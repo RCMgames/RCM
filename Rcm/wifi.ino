@@ -32,22 +32,30 @@ void setupWifi() {
 }
 void wifiComms() {
   int packetSize = udp.parsePacket();
+  if (udp.remoteIP() != IPAddress(0, 0, 0, 0) && wifiIPLock == IPAddress(0, 0, 0, 0)) {
+    wifiIPLock = udp.remoteIP();
+  }
+  if (millis() - lastMessageTimeMillis > SIGNAL_LOSS_TIMEOUT) {
+    wifiIPLock = IPAddress(0, 0, 0, 0);
+  }
   receivedNewData = false;
-  if (packetSize) {//got a message
-    receivedNewData = true;
-    lastMessageTimeMillis = millis();
+  if (packetSize) { //got a message
     unsigned char packetBuffer[maxWifiRecvBufSize];
     udp.read(packetBuffer, maxWifiRecvBufSize);
-    for (int i = 0; i < maxWifiRecvBufSize; i++) {
-      recvdData[i] = (byte)((int)(256 + packetBuffer[i]) % 256);
+    if (udp.remoteIP() == wifiIPLock || wifiIPLock == IPAddress(0, 0, 0, 0)) {
+      receivedNewData = true;
+      lastMessageTimeMillis = millis();
+      for (int i = 0; i < maxWifiRecvBufSize; i++) {
+        recvdData[i] = (byte)((int)(256 + packetBuffer[i]) % 256);
+      }
+      WifiDataToParse();
+      numBytesToSend = WifiDataToSend();
+      udp.beginPacket();
+      for (byte i = 0; i < numBytesToSend; i++) {
+        udp.write(dataToSend[i]);
+      }
+      udp.endPacket();
     }
-    WifiDataToParse();
-    numBytesToSend = WifiDataToSend();
-    udp.beginPacket();
-    for (byte i = 0; i < numBytesToSend; i++) {
-      udp.write(dataToSend[i]);
-    }
-    udp.endPacket();
   }
 }
 
