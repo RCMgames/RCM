@@ -10,12 +10,14 @@ const int SIGNAL_LOSS_TIMEOUT = 1000; //disable if no signal after this many mil
 //////////////////////////// add variables here
 PVector movement = {0.0, 0.0};
 float intake = 0.0;
+float intakeWriteVal=0.0;
 float flywheel = 0.0;
 float hood = 0.0;
 boolean laser = false;
 
 void Enabled() { //code to run while enabled
-  setSer(port4, intake);
+  intakeWriteVal+=constrain(intake-intakeWriteVal,-.0001,.0005);
+  setSer(port4, intakeWriteVal,1570,1390);
   setSer(port3, hood);
   setMot(portC, laser ? 100 : 0);
   setMot(portD, flywheel);
