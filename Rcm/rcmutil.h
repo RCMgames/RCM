@@ -25,6 +25,10 @@ float motorDeadzone = 0;
 #define portC 2,17,16,12
 #define portD 0,13,4,14
 
+#define inport1 39
+#define inport2 34
+#define inport3 35
+
 struct PVector {
   float x;
   float y;
