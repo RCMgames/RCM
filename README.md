@@ -16,3 +16,7 @@ This controls a four wheel omni/mechanum drive and two servos
 ## branch: Robot-C
 
 This controls a 3 wheel kiwi drive
+
+## branch: Robot-D
+
+This controls a robot with two drive motor channels, a flywheel, a servo intake, an adjustible hood, and a laser
