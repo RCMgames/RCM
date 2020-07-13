@@ -1,11 +1,11 @@
 #include "rcmutil.h"
 #include "wifi.h"
-const char *routerName = "networkName";
-const char *routerPass = "networkPass";
+const char *routerName = "chicken";
+const char *routerPass = "bawkbawk";
 const char *APPass = "RCMpassword";
-int port = 25210;
+int port = 25212;
 const boolean connectToNetwork = true; //true=try to connect to router  false=go straight to hotspot mode
-const boolean wifiRestartNotHotspot = false; //when connection issue, true=retry connection to router  false=fall back to hotspot
+const boolean wifiRestartNotHotspot = true; //when connection issue, true=retry connection to router  false=fall back to hotspot
 const int SIGNAL_LOSS_TIMEOUT = 1000; //disable if no signal after this many milliseconds
 //////////////////////////// add variables here
 float x = 0.0;
@@ -48,16 +48,23 @@ void WifiDataToParse() {
   wifiArrayCounter = 0;
   enabled = recvBl();
   //add data to read here:
-  z = recvFl();
   y = recvFl();
   x = recvFl();
-  a = recvFl();
+  z = recvFl();
   b = recvFl();
+  a = recvFl();
 }
 int WifiDataToSend() {
   wifiArrayCounter = 0;
   sendFl(batVoltAvg);
   //add data to send here:
+  sendFl(2);
+  sendFl(5);
+  sendFl(4);
+  sendFl(25.21);
+  sendFl(1);
+  sendFl(4);
+  sendFl(8);
 
   return wifiArrayCounter;
 }
