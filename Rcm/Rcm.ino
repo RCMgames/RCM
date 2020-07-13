@@ -25,6 +25,10 @@ void PowerOn() { //runs once on robot startup
 
 }
 
+void Always(){ //always runs if void loop is running, don't control outputs here
+
+}
+
 //you can communicate booleans, bytes, ints, floats, and vectors
 void WifiDataToParse() {
   wifiArrayCounter = 0;
@@ -61,6 +65,7 @@ void loop() {
   if (millis() - lastMessageTimeMillis > SIGNAL_LOSS_TIMEOUT) {
     enabled = false;
   }
+  Always();
   if (enabled && !wasEnabled) {
     Enable();
   }

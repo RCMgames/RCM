@@ -13,12 +13,17 @@ const int SERVO_FREQ = 50;
 const int SERVO_RES = 20;
 float motorMinMovePWMVal = 0;
 float motorDeadzone = 0;
+#define port1Pin 32
+#define port2Pin 33
+#define port3Pin 25
+#define port4Pin 26
+#define port5Pin 27
 //          PWM_CH, PIN
-#define port1 8,32
-#define port2 7,33
-#define port3 6,25
-#define port4 5,26
-#define port5 4,27
+#define port1 8,port1Pin
+#define port2 7,port2Pin
+#define port3 6,port3Pin
+#define port4 5,port4Pin
+#define port5 4,port5Pin
 //           PWM_CH, EN_PIN, PIN1, PIN2
 #define portA 3,23,22,19
 #define portB 1,5,18,21
