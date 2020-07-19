@@ -12,3 +12,4 @@ byte dataToSend[maxWifiSendBufSize] = {0};
 char packetBuffer[maxWifiRecvBufSize] = {0};
 int numBytesToSend = 0;
 int wifiArrayCounter = 0;
+IPAddress wifiIPLock=IPAddress(0, 0, 0, 0);
