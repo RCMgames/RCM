@@ -1,33 +1,34 @@
 #include "rcmutil.h"
 #include "wifi.h"
+// Change once router has been set up
 const char *routerName = "networkName";
 const char *routerPass = "networkPass";
 const char *APPass = "RCMpassword";
 int port = 25210;
 const boolean connectToNetwork = true; //true=try to connect to router  false=go straight to hotspot mode
-const boolean wifiRestartNotHotspot = false; //when connection issue, true=retry connection to router  false=fall back to hotspot
+const boolean wifiRestartNotHotspot = true; //when connection issue, true=retry connection to router  false=fall back to hotspot
 const int SIGNAL_LOSS_TIMEOUT = 1000; //disable if no signal after this many milliseconds
 //////////////////////////// add variables here
 float turn = 0.0;
 float forward = 0.0;
+// How much power to give to the conveyor motors
 float intake = 0.0;
 
 void Enabled() { //code to run while enabled
-  PVector driveVect = {turn, forward};
   // Run drivetrain motors 
-  tankMot(portA, portB, driveVect);
+  tankMot(portA, portD, turn, forward);
   // Run conveyor motors
+  setMot(portB, intake);
   setMot(portC, intake);
-  setMot(portD, intake);
 }
 
 void Enable() { //turn on outputs
   // Drive motors. Need to figure out exact ports
   enableMot(portA);
-  enableMot(portB);
-  // Conveyor motors. Need to figure out exact ports
-  enableMot(portC);
   enableMot(portD);
+  // Conveyor motors. Need to figure out exact ports
+  enableMot(portB);
+  enableMot(portC);
 }
 
 void Disable() { //shut off all outputs
@@ -44,7 +45,6 @@ void PowerOn() { //runs once on robot startup
 
 void Always(){ //always runs if void loop is running, don't control outputs here
   wifiArrayCounter = 0;
-  enabled = recvBl();
 }
 
 //you can communicate booleans, bytes, ints, floats, and vectors
