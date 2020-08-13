@@ -8,14 +8,17 @@ const boolean connectToNetwork = true; //true=try to connect to router  false=go
 const boolean wifiRestartNotHotspot = false; //when connection issue, true=retry connection to router  false=fall back to hotspot
 const int SIGNAL_LOSS_TIMEOUT = 1000; //disable if no signal after this many milliseconds
 //////////////////////////// add variables here
+float turn = 0.0;
+float forward = 0.0;
+float intake = 0.0;
 
 void Enabled() { //code to run while enabled
-  PVector driveVect = {turn, forward}
+  PVector driveVect = {turn, forward};
   // Run drivetrain motors 
   tankMot(portA, portB, driveVect);
   // Run conveyor motors
-  setMot(portC, intake}
-  setMot{portD, intake}
+  setMot(portC, intake);
+  setMot(portD, intake);
 }
 
 void Enable() { //turn on outputs
@@ -42,6 +45,12 @@ void PowerOn() { //runs once on robot startup
 void Always(){ //always runs if void loop is running, don't control outputs here
   wifiArrayCounter = 0;
   enabled = recvBl();
+}
+
+//you can communicate booleans, bytes, ints, floats, and vectors
+void WifiDataToParse() {
+  wifiArrayCounter = 0;
+  enabled = recvBl();
   //add data to read here:
   forward = recvFl();
   // skip strafe
@@ -49,13 +58,6 @@ void Always(){ //always runs if void loop is running, don't control outputs here
   turn = recvFl();
   intake = recvFl();
 }
-
-//you can communicate booleans, bytes, ints, floats, and vectors
-//void WifiDataToParse() {
-//  wifiArrayCounter = 0;
-//  enabled = recvBl();
-//  //add data to read here:
-//}
 
 int WifiDataToSend() {
   wifiArrayCounter = 0;
