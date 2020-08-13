@@ -13,6 +13,9 @@ float turn = 0.0;
 float forward = 0.0;
 // How much power to give to the conveyor motors
 float intake = 0.0;
+// Value read by the distance sensor
+float sensorValue = 0.0;
+
 
 void Enabled() { //code to run while enabled
   // Run drivetrain motors 
@@ -44,7 +47,8 @@ void PowerOn() { //runs once on robot startup
 }
 
 void Always(){ //always runs if void loop is running, don't control outputs here
-  wifiArrayCounter = 0;
+  // Get values from the distance sensor
+  sensorValue = digitalRead(port1Pin);
 }
 
 //you can communicate booleans, bytes, ints, floats, and vectors
@@ -63,7 +67,8 @@ int WifiDataToSend() {
   wifiArrayCounter = 0;
   sendFl(batVoltAvg);
   //add data to send here:
-
+  sendFl(sensorValue);
+  
   return wifiArrayCounter;
 }
 
@@ -72,6 +77,7 @@ void setup() {
   Disable();
   pinMode(ONBOARD_LED, OUTPUT);
   pinMode(BAT_PIN, INPUT);
+  pinMode(port1Pin, INPUT);
   Serial.begin(115200);
   Serial.println();
   Serial.println("##########esp32 powered on.");
