@@ -5,7 +5,7 @@ const char *routerPass = "networkPass";
 const char *APPass = "RCMpassword";
 int port = 25210;
 const boolean connectToNetwork = true; //true=try to connect to router  false=go straight to hotspot mode
-const boolean wifiRestartNotHotspot = false; //when connection issue, true=retry connection to router  false=fall back to hotspot
+const boolean wifiRestartNotHotspot = true; //when connection issue, true=retry connection to router  false=fall back to hotspot
 const int SIGNAL_LOSS_TIMEOUT = 1000; //disable if no signal after this many milliseconds
 //////////////////////////// add variables here
 
@@ -21,7 +21,7 @@ void Disable() { //shut off all outputs
 
 }
 
-void PowerOn() { //runs once on robot startup
+void PowerOn() { //runs once on robot startup, set pinmodes
 
 }
 
@@ -40,7 +40,7 @@ int WifiDataToSend() {
   wifiArrayCounter = 0;
   sendFl(batVoltAvg);
   //add data to send here:
-
+  
   return wifiArrayCounter;
 }
 

@@ -12,7 +12,7 @@ void setSer(int ch, int pin, float val) {
   val = constrain(val, -1, 1);
   ledcWrite(ch, SERVO_TICKS_PER_MICROSECOND * (1500 + val * 500));
 }
-void setSer(int ch, int pin, float val, int centerPulse, int rangePulse) {
+void setSer(int ch, int pin, float val, int low, int high) {
   val = constrain(val, -1, 1);
-  ledcWrite(ch, SERVO_TICKS_PER_MICROSECOND * (centerPulse + val * rangePulse / 2));
+  ledcWrite(ch, SERVO_TICKS_PER_MICROSECOND * ((high + low) / 2 + val * (high - low) / 2));
 }
