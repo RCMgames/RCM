@@ -16,9 +16,9 @@ float intake = 0.0;
 float arm = 0.0;
 
 void Enabled() { //code to run while enabled
-  setSer(port1, arm, 900, 2100);
-  setSer(port2, -arm, 900, 2100);
-  setSer(port3, intake, 900, 2100);
+  setSer(port1, arm, 544, 2400);
+  setSer(port2, -arm, 544, 2400);
+  setSer(port3, intake, 544, 2400);
   tankMot(portA, portC, turn, drive);
 }
 
