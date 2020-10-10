@@ -12,14 +12,17 @@ const int SIGNAL_LOSS_TIMEOUT = 1000; //disable if no signal after this many mil
 //PVector driveVect = {0.0, 0.0};
 float drive = 0.0;
 float turn = 0.0;
+float speedMultip;
 float intake = 0.0;
 float arm = 0.0;
+float armWriteVal = 0.0;
 
 void Enabled() { //code to run while enabled
-  setSer(port1, arm, 544, 2400);
-  setSer(port2, -arm, 544, 2400);
+  tankMot(portA, portC, turn * speedMultip, drive * speedMultip);
+  armWriteVal+=constrain(arm-armWriteVal,-.0001,.0005);
+  setSer(port1, armWriteVal, 544, 2400);
+  setSer(port2, -armWriteVal, 544, 2400);
   setSer(port3, intake, 544, 2400);
-  tankMot(portA, portC, turn, drive);
 }
 
 void Enable() { //turn on outputs
@@ -53,7 +56,7 @@ void WifiDataToParse() {
   //add data to read here:
   drive = recvFl();
   turn = recvFl();
-  recvFl();  //throw away strafing
+  speedMultip = recvFl();
   intake = recvFl();
   arm = recvFl();
 }
