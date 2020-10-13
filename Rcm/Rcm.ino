@@ -19,7 +19,7 @@ float armWriteVal = 0.0;
 
 void Enabled() { //code to run while enabled
   tankMot(portA, portC, turn * speedMultip, drive * speedMultip);
-  armWriteVal+=constrain(arm-armWriteVal,-.0001,.0005);
+  armWriteVal+=constrain(arm-armWriteVal,-.0001,.0001);
   setSer(port1, armWriteVal, 544, 2400);
   setSer(port2, -armWriteVal, 544, 2400);
   setSer(port3, intake, 544, 2400);

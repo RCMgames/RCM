@@ -10,7 +10,7 @@ void disableSer(int ch, int pin) {
 }
 void setSer(int ch, int pin, float val) {
   val = constrain(val, -1, 1);
-  ledcWrite(ch, SERVO_TICKS_PER_MICROSECOND * (1500 + val * 500));
+  ledcWrite(ch, SERVO_TICKS_PER_MICROSECOND * (1472 + val * 928));
 }
 void setSer(int ch, int pin, float val, int low, int high) {
   val = constrain(val, -1, 1);
