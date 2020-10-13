@@ -14,12 +14,12 @@ float drive = 0.0;
 float turn = 0.0;
 float speedMultip;
 float intake = 0.0;
-float arm = 0.0;
-float armWriteVal = 0.0;
+float arm = 0.65;
+float armWriteVal = 0.65;
 
 void Enabled() { //code to run while enabled
-  tankMot(portA, portC, turn * speedMultip, drive * speedMultip);
-  armWriteVal+=constrain(arm-armWriteVal,-.0001,.0001);
+  tankMot(portC, portA, turn * speedMultip, drive * speedMultip);
+  armWriteVal+=constrain(arm-armWriteVal,-.00015,.0002);
   setSer(port1, armWriteVal, 544, 2400);
   setSer(port2, -armWriteVal, 544, 2400);
   setSer(port3, intake, 544, 2400);
