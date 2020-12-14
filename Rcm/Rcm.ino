@@ -28,9 +28,9 @@ void Enabled() { //code to run while enabled
   setMot(portC, (Sthrottle + Sswerve - Syaw)); //back right motor
   setMot(portD, (Sthrottle - Sswerve - Syaw)); //front right motor
 
-  setSer(port3,arm,1000,2000);
-  setSer(port2,inouttake);
-  setSer(port1,-inouttake);
+  setSer(port3,arm,1,2000);
+  setSer(port5,inouttake);
+  setSer(port4,-inouttake);
 }
 
 void Enable() { //turn on outputs
@@ -39,8 +39,8 @@ void Enable() { //turn on outputs
   enableMot(portC);
   enableMot(portD);
   enableSer(port3);
-  enableSer(port2);
-  enableSer(port1);
+  enableSer(port5);
+  enableSer(port4);
 }
 
 void Disable() { //shut off all outputs
@@ -49,8 +49,8 @@ void Disable() { //shut off all outputs
   disableMot(portC);
   disableMot(portD);
   disableSer(port3);
-  disableSer(port2);
-  disableSer(port1);
+  disableSer(port5);
+  disableSer(port4);
 }
 
 void PowerOn() { //runs once on robot startup, set pinmodes
