@@ -1,9 +1,9 @@
 #include "rcmutil.h"
 #include "wifi.h"
-const char *routerName = "google2";
-const char *routerPass = "5413422189";
+const char *routerName = "Garage2.4";
+const char *routerPass = "TamiBeach";
 const char *APPass = "RCMpassword";
-int port = 25210;
+int port = 25215;
 const boolean connectToNetwork = true; //true=try to connect to router  false=go straight to hotspot mode
 const boolean wifiRestartNotHotspot = true; //when connection issue, true=retry connection to router  false=fall back to hotspot
 const int SIGNAL_LOSS_TIMEOUT = 1000; //disable if no signal after this many milliseconds
@@ -42,7 +42,7 @@ void Disable() { //shut off all outputs
 }
 
 void PowerOn() { //runs once on robot startup, set pinmodes
-
+  setMotorCalibration(3.5,0.2);
 }
 
 void Always() { //always runs if void loop is running, don't control outputs here
