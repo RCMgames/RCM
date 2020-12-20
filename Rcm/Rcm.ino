@@ -3,7 +3,7 @@
 const char *routerName = "Garage2.4";
 const char *routerPass = "TamiBeach";
 const char *APPass = "RCMpassword";
-int port = 25213;
+int port = 25214;
 const boolean connectToNetwork = true; //true=try to connect to router  false=go straight to hotspot mode
 const boolean wifiRestartNotHotspot = true; //when connection issue, true=retry connection to router  false=fall back to hotspot
 const int SIGNAL_LOSS_TIMEOUT = 1000; //disable if no signal after this many milliseconds
