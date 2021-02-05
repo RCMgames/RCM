@@ -14,7 +14,7 @@ float finger = 0;
 float lifter = 0;
 
 void Enabled() { //code to run while enabled
-  tankMot(portA, portD, yaw, throttle);
+  tankMot(portA, portC, yaw, throttle);
   setMot(portB, lift);
 ////////////////////////
   setSer(port5,lifter,500,2000);
@@ -24,7 +24,7 @@ void Enabled() { //code to run while enabled
 void Enable() { //turn on outputs
   enableMot(portA);
   enableMot(portB);
-  enableMot(portD);
+  enableMot(portC);
   enableSer(port5);
   enableSer(port4);
 }
@@ -32,7 +32,7 @@ void Enable() { //turn on outputs
 void Disable() { //shut off all outputs
   disableMot(portA);
   disableMot(portB);
-  disableMot(portD);
+  disableMot(portC);
   disableSer(port5);
   disableSer(port4);
 }
