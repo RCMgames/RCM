@@ -8,24 +8,24 @@ const boolean connectToNetwork = true; //true=try to connect to router  false=go
 const boolean wifiRestartNotHotspot = true; //when connection issue, true=retry connection to router  false=fall back to hotspot
 const int SIGNAL_LOSS_TIMEOUT = 1000; //disable if no signal after this many milliseconds
 //////////////////////////// add variables here
-
+float speed = 0.0;
 void Enabled() { //code to run while enabled
-
+  setSer(port1, speed);
 }
 
 void Enable() { //turn on outputs
-
+  enableSer(port1);
 }
 
 void Disable() { //shut off all outputs
-
+  disableSer(port1);
 }
 
 void PowerOn() { //runs once on robot startup, set pinmodes
 
 }
 
-void Always(){ //always runs if void loop is running, don't control outputs here
+void Always() { //always runs if void loop is running, don't control outputs here
 
 }
 
@@ -34,13 +34,14 @@ void WifiDataToParse() {
   wifiArrayCounter = 0;
   enabled = recvBl();
   //add data to read here:
+  speed = recvFl();
 
 }
 int WifiDataToSend() {
   wifiArrayCounter = 0;
   sendFl(batVoltAvg);
   //add data to send here:
-  
+
   return wifiArrayCounter;
 }
 
