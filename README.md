@@ -12,3 +12,7 @@ This code controls two drive motors and a servo
 ## branch: Robot-B
 
 This controls a four wheel kiwi drive and two servos
+
+## branch: Robot-C
+
+This controls a 3 wheel kiwi drive
