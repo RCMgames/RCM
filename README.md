@@ -13,7 +13,7 @@ This code controls two drive motors and a servo
 
 This controls a four wheel omni/mechanum drive and two servos
 
-## branch: Robot-C
+## branch: [Robot-C](https://github.com/RCMgames/RCM/discussions/24)
 
 This controls a 3 wheel kiwi drive
 
