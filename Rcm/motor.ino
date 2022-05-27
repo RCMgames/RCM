@@ -1,9 +1,8 @@
 void enableMot(int ch, int en, int i1, int i2) {
-  ledcSetup(ch, PWM_FREQ, PWM_RES);
   ledcAttachPin(en, ch);
+  ledcSetup(ch, PWM_FREQ, PWM_RES);
   pinMode(i1, OUTPUT);
   pinMode(i2, OUTPUT);
-  pinMode(en, OUTPUT);
   digitalWrite(i1, HIGH);
   digitalWrite(i2, HIGH);
   ledcWrite(ch, 0);
@@ -83,7 +82,7 @@ void kiwiMot(int ch1, int en1, int a1, int b1, int ch2, int en2, int a2, int b2,
     y = _y;
     z = _z;
   }
-  setMot(ch1, en1, a1, b1, (float)(z + x));//back
+  setMot(ch1, en1, a1, b1, (float)(z - x));//back
   setMot(ch2, en2, a2, b2, (float)(z + y * 0.866 + x / 2)); //front left
   setMot(ch3, en3, a3, b3, (float)(z - y * 0.866 + x / 2)); //front right
 }
